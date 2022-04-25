@@ -24,6 +24,61 @@ The campus is located in the Moist Maritime Coastal Douglas-fir Subzone (CDFmm) 
 #### Canopy Cover
 LiDAR metrics were derived using LiDAR data flown around the UBC Campus in 2021. Canopy cover was calculated in RStudio using the lidR package (Roussel, 2021). LiDAR grid metrics were calculated for first returns only. Trees were filtered to be taller than 2 meters.
 
+```{r}
+##### Install and/or load packages ####
+library(lidR)
+library(tidyverse)
+library(here)
+library(raster)
+library(terra)
+library(sf)
+library(car)
+
+#### Read in data ####
+lidardata <- readLAScatalog("data/LAS")
+
+#### Analyze data #### 
+las_check(lidardata) # Inspect lidardata
+summary(lidardata) # Summary of lidardata
+plot(lidardata) # Plot lidardata
+
+# Create DEM to use to normalize the data
+UBC_DEM <- grid_terrain(lidardata, 2, tin()) # Using spatial interpolation to create DEM
+
+#Create color palatte
+col_1 <- height.colors(50) # Assign a colour palatte
+
+#Plot DEM using color palatte
+plot(UBC_DEM, col = col_1) # Plot in 2D
+#plot_dtm3d(UBC_DEM) # Plot in 3D **DO NOT RUN IF YOUR COMPUTER IS SLOW**
+
+# Define LAScatalog engine options
+opt_output_files(lidardata) <- ("data/Normalized/norm_ubcbg_{ID}") # Setting directory for where the file will go
+
+# Normalize all tiles in lidardata with the DEM 
+norm_tiles_ubcbg <- normalize_height(lidardata, UBC_DEM)
+
+# Check to see if the normalization worked
+norm_ubcbg_1 <- readLAS(here("data/Normalized/norm_ubcbg_1.las")) # Read in the normalized tiles of norm_ubcbg
+plot(norm_ubcbg_1) # Visualize the normalized norm_ubcbg (rgl)
+
+##### Read in normalized data ####
+ctg <- catalog(here("data/Normalized")) # Create catalog of normalized data
+opt_filter(ctg) <- "-keep_first" # Filter for first returns 
+
+#### Grid metrics ####
+my_metrics <- grid_metrics(ctg, .stdmetrics_z, res = 2) # Create metrics with a resolution of 2m
+
+my_metrics <- terra::rast(my_metrics) # Read in metrics
+
+terra::writeRaster(my_metrics, 
+                   filename = file.path("data/Z_METRICS",
+                                        paste0(names(my_metrics), ".tif")), 
+                   overwrite = TRUE)
+
+cover <- my_metrics$pzabove2 # Assign pzabove2 (canopy cover)
+plot(cover) # Plot canopy cover 
+```
 
 #### Land Surface Temperature
 A land surface temperature (LST) map was created from calculating LST in ArcGIS Pro. This is a five step process that includes calculating top of atmospheric spectral radiance, a brightness temperature conversion, a Normalized Difference Vegetation Index (NDVI), proportion of vegetation, and emissivity.
@@ -45,6 +100,46 @@ This is a land surface temperature map of UBCBG using Landsat-8 data retrieved o
 
 A model was then created to analyze land surface temperature with LiDAR metrics on 100 random points inside UBC Botanical Garden. Using canopy cover (pzabove2) and the maximum height in the stand (zmaxvalue) in the model led to valuable results. The model was created in RStudio using R programming language. 
 
+```{r}
+##### Install and/or load packages ####
+library(here)
+library(raster)
+library(terra)
+library(sf)
+library(car)
+
+#### Read in data ####
+randompointdata <- st_read("data/randompointdata.shp") # Read in 100 random points data
+
+#### Model LST and CC ####
+
+# Fit a empty model
+model1= lm(lstvalue ~ 1, data = randompointdata) # rastervalu is the LST
+
+# Now, add in one variable at time, and select the most significant
+add1(model1,~ pzabove2va + zkurtvalue + zmaxvalue + zskewvalue, test = 'F')
+
+# Fit a linear model using multiple predictors (separating the predictors by '+' sign)
+model1 = lm(lstvalue ~ pzabove2va + zmaxvalue, data = randompointdata)
+
+#Display a summary of the model with the predictors
+summary(model1)  
+
+pairs(~ lstvalue + pzabove2va + zmaxvalue, data = randompointdata) # Check to see correlation
+
+#Display a summary of the model
+summary(model1) 
+
+# Plot LST and fitted values
+plot(randompointdata$lstvalue ~ model1$fitted.values, xlab = 'Predicted', ylab = 'Measured', main = "LST Modelled Against Canopy Cover and Maximum Height")
+abline(0,1, col = "red")
+
+#Create function from model LST coefficients
+f <- function(a,b){
+  (-0.007739 *a) + (-0.042072*b) + 61.789420          
+}
+```
+
 ## Results
 ![](images/distribution.png)
 This is the distribution of the pairs of canopy cover and maximum height when paired with land surface temperature. pzabove2va is the LiDAR metric for canopy cover and zmaxvalue is the metric for maximum height. Values ranging from 0-100 on axis represent canopy cover. The maximum height ranges from 0-50 and LST ranges from 58-65. In this figure, you can see they are signficant when paired against the lst value which is the land surface temperature calculation. 
@@ -58,6 +153,15 @@ Interesting that canopy cover was not significant in the model! Is there any sig
 
 ![](maps/100RandomPointCC.png)
 An unpaired t-test was run to compare the means of the two unrelated groups to determine if there was any difference between the two.  This was done on the 100 random points but one group was trees taller than 2m and the other group was trees below 2m. This represented areas with canopy cover and areas without canopy cover. The t-test showed that the two unrelated groups did have differences as the p-value was 0.003571 which is less than the alpha of 0.05. This means that areas with canopy cover were different from areas without canopy cover. We reject our null hypothesis as the true difference in means is not equal to 0.
+
+```{r}
+#### Unpaired t-test ####
+
+# Read in data
+ttestcsv <- read.csv(here("data/ttestrandompoints.csv")) # .csv data is populated from selecting by attributes on ArcGIS Pro 
+
+t.test(ttestcsv$above0, ttestcsv$X0, alternative = "two.sided", var.equal = FALSE)
+```
 
 ## Discussion
 LiDAR is becoming more common in understanding the structure of a forest. Canopy cover is important in forests because it buffers understory temperatures (Kašpar et al., 2021). To assess how temperatures are being buffered below the understory, microclimate is an important variable in determining these differences. A study by Kašpar et al. (2021), found that although ground-measured canopy height and cover has been mostly studied, it is impossible to use these metrics in implementation in understanding microclimatic effects over a large spatially continuous area.
