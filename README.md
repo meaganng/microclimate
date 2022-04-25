@@ -87,19 +87,6 @@ A land surface temperature (LST) map was created from calculating LST in ArcGIS 
 #### Modelling Using Multiple Linear Regression
 A model was created to analyze land surface temperature with LiDAR metrics on 100 points inside UBC Botanical Garden. Using canopy cover (pzabove2) and the maximum height in the stand (zmaxvalue) in the model led to valuable results. The model was created in RStudio using R programming language. 
 
-##### Workflow Methodology
-![](images/workflow.png)
-This is the study’s workflow diagram on canopy cover and microclimate in UBCBG. This is based on using LiDAR and Landsat-8 data. In order to run the multiple linear regression, first canopy cover must be derived and then LST data as seen in yellow.  With these two outputs, they can then be input as a secondary input into running a multiple linear regression that can produce a model for canopy cover, maximum height, and LST—as seen in red. An unpaired t-test is done to further investigate the results from the model to give a significance result. 
-
-## Results
-Areas with high canopy cover are represented with a deep dark green and areas without canopy cover are represented in white. Vegetation that has little to no canopy cover is shown in light green. Canopy cover was calculated from LiDAR data flown in 2021
-![](maps/CC.png)
-
-This is a land surface temperature map of UBCBG using Landsat-8 data retrieved on June 30, 2021. On this day, a heat dome extreme weather event was occurring causing extreme high temperatures. You can see the yellow-orange areas reflect cooler temperatures. In areas that have high temperatures, those are reflected in bright red and they look to be correlated with buildings in UBCBG as seen in our study site map. The highest value within the garden is 64.2 °C and the lowest is 58.6°C. It is important to note that LST is different from ambient temperature; where ambient temperature is the temperature of the environment (Land Surface Temperature, 2021).
-![](maps/LST.png)
-
-A model was then created to analyze land surface temperature with LiDAR metrics on 100 random points inside UBC Botanical Garden. Using canopy cover (pzabove2) and the maximum height in the stand (zmaxvalue) in the model led to valuable results. The model was created in RStudio using R programming language. 
-
 ```{r}
 ##### Install and/or load packages ####
 library(here)
@@ -139,6 +126,19 @@ f <- function(a,b){
   (-0.007739 *a) + (-0.042072*b) + 61.789420          
 }
 ```
+
+##### Workflow Methodology
+![](images/workflow.png)
+This is the study’s workflow diagram on canopy cover and microclimate in UBCBG. This is based on using LiDAR and Landsat-8 data. In order to run the multiple linear regression, first canopy cover must be derived and then LST data as seen in yellow.  With these two outputs, they can then be input as a secondary input into running a multiple linear regression that can produce a model for canopy cover, maximum height, and LST—as seen in red. An unpaired t-test is done to further investigate the results from the model to give a significance result. 
+
+## Results
+Areas with high canopy cover are represented with a deep dark green and areas without canopy cover are represented in white. Vegetation that has little to no canopy cover is shown in light green. Canopy cover was calculated from LiDAR data flown in 2021
+![](maps/CC.png)
+
+This is a land surface temperature map of UBCBG using Landsat-8 data retrieved on June 30, 2021. On this day, a heat dome extreme weather event was occurring causing extreme high temperatures. You can see the yellow-orange areas reflect cooler temperatures. In areas that have high temperatures, those are reflected in bright red and they look to be correlated with buildings in UBCBG as seen in our study site map. The highest value within the garden is 64.2 °C and the lowest is 58.6°C. It is important to note that LST is different from ambient temperature; where ambient temperature is the temperature of the environment (Land Surface Temperature, 2021).
+![](maps/LST.png)
+
+A model was then created to analyze land surface temperature with LiDAR metrics on 100 random points inside UBC Botanical Garden. Using canopy cover (pzabove2) and the maximum height in the stand (zmaxvalue) in the model led to valuable results. The model was created in RStudio using R programming language. 
 
 ## Results
 ![](images/distribution.png)
