@@ -1,3 +1,4 @@
+![](images/ubc-banner.jpg)
 # Understanding Microclimate in University of British Columbia's Botanical Garden
 #### Using a multiple linear regression, a model was created to assess land surface temperature and LiDAR metrics.
 
