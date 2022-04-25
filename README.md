@@ -3,4 +3,4 @@
 
 ## Due to size constraints, please visit the [MGEM Scholars Portal Dataverse](https://dataverse.scholarsportal.info/dataverse/UBC_MGEM) to download this project. 
 
-![](images/UBCBG.jpg) | width = 100
+![]((images/UBCBG.jpg) | width = 100)
