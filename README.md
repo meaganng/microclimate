@@ -2,6 +2,7 @@
 #### Using a multiple linear regression, a model was created to assess land surface temperature and LiDAR metrics.
 
 ## Due to size constraints, please visit the [MGEM Scholars Portal Dataverse](https://dataverse.scholarsportal.info/dataverse/UBC_MGEM) to download this project. 
+## Please visit my [StoryMap](https://storymaps.arcgis.com/stories/f55ffe053eac43abba92305a27cb6f57) created with ArcGIS Online for a more interactive version of this project readme.
 
 ![](images/UBCBG.jpg)
 
