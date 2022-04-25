@@ -134,6 +134,6 @@ D., & Coomes, D. (2019). Advances in Microclimate Ecology Arising from
 Remote Sensing. Trends in Ecology & Evolution, 34(4),
 327–341.  https://doi.org/10.1016/j.tree.2018.12.012
 
+##### 
 
-![68747470733a2f2f692e6372656174697665636f6d6d6f6e732e6f72672f6c2f62792f342e302f38387833312e706e67](https://user-images.githubusercontent.com/90533283/165009157-3fff5989-5af1-473f-b1b7-82bf2cd84b54.png)  This work is licensed under a Creative Commons Attribution 4.0 International License.
-
+![68747470733a2f2f692e6372656174697665636f6d6d6f6e732e6f72672f6c2f62792f342e302f38387833312e706e67](https://user-images.githubusercontent.com/90533283/165009157-3fff5989-5af1-473f-b1b7-82bf2cd84b54.png) This work is licensed under the Creative Commons Attribution 4.0 International (CC BY 4.0). 
