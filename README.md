@@ -21,15 +21,15 @@ The campus is located in the Moist Maritime Coastal Douglas-fir Subzone (CDFmm) 
 ![](maps/DataSite.png)
 
 ## Methods
-##### Canopy Cover
+#### Canopy Cover
 LiDAR metrics were derived using LiDAR data flown around the UBC Campus in 2021. Canopy cover was calculated in RStudio using the lidR package (Roussel, 2021). LiDAR grid metrics were calculated for first returns only. Trees were filtered to be taller than 2 meters.
 
 
-##### Land Surface Temperature
+#### Land Surface Temperature
 A land surface temperature (LST) map was created from calculating LST in ArcGIS Pro. This is a five step process that includes calculating top of atmospheric spectral radiance, a brightness temperature conversion, a Normalized Difference Vegetation Index (NDVI), proportion of vegetation, and emissivity.
 
 
-#####Modelling Using Multiple Linear Regression
+#### Modelling Using Multiple Linear Regression
 A model was created to analyze land surface temperature with LiDAR metrics on 100 points inside UBC Botanical Garden. Using canopy cover (pzabove2) and the maximum height in the stand (zmaxvalue) in the model led to valuable results. The model was created in RStudio using R programming language. 
 
 ##### Workflow Methodology
