@@ -48,6 +48,7 @@ A model was then created to analyze land surface temperature with LiDAR metrics 
 This is the distribution of the pairs of canopy cover and maximum height when paired with land surface temperature. pzabove2va is the LiDAR metric for canopy cover and zmaxvalue is the metric for maximum height. Values ranging from 0-100 on axis represent canopy cover. The maximum height ranges from 0-50 and LST ranges from 58-65. In this figure, you can see they are signficant when paired against the lst value which is the land surface temperature calculation. 
 
 ![](images/model.png)
+
 This is the predicted vs. measured plot produced from the model. After running the model with both canopy cover and the maximum height, the correlation between land surface temperature and canopy cover was not significant. This is very interesting! Canopy cover had a p-value of 0.0993. However, the maximum height was significant with land surface temperature with a p-value of 0.0034. The closer points are along the fitted line, the stronger the relationship. Since the R2 value is 0.3409, the model can only explain a 34% variation between the variables tested. 
 
 ## Further Investigation of Results
@@ -76,46 +77,56 @@ Currently, the model provides a practical structure in future assessment of micr
 - With field work, ground sampels ca also be used in ground truthing data to provide validation and accuracy to test against models created. With a generated shapefile excluding buildings and structures, random points can be generated similarly to this study to create a model. Then, this data can be validated and tested for accuracy against a model using ground samples.
 
 ## Bibliography
+About Us—UBC Botanical Garden. (n.d.).
+Retrieved April 1, 2022, from  https://botanicalgarden.ubc.ca/about/about-us/ 
 
-####About Us—UBC Botanical Garden. (n.d.).
-####Retrieved April 1, 2022, from  https://botanicalgarden.ubc.ca/about/about-us/ 
-####BEC WEB. (n.d.). Retrieved April 1,
-####2022, from  https://www.for.gov.bc.ca/hre/becweb/resources/classificationreports/subzones/index.html 
-####CDFmm.pdf. (n.d.). Retrieved April 1, 2022, from  https://www.for.gov.bc.ca/hre/becweb/Downloads/Downloads_SubzoneReports/CDFmm.pdf 
-####Cheng, Y. (Daniel), Farmer, J. R., Dickinson, S.
-####L., Robeson, S. M., Fischer, B. C., & Reynolds, H. L. (2021). Climate
-####change impacts and urban green space adaptation efforts: Evidence from U.S.
-####municipal parks and recreation departments. Urban Climate, 39,
-####100962.  https://doi.org/10.1016/j.uclim.2021.100962 
-####De Frenne, P., Lenoir, J., Luoto, M., Scheffers, B.
-####R., Zellweger, F., Aalto, J., Ashcroft, M. B., Christiansen, D. M., Decocq, G.,
-####De Pauw, K., Govaert, S., Greiser, C., Gril, E., Hampe, A., Jucker, T., Klinges,
-####D. H., Koelemeijer, I. A., Lembrechts, J. J., Marrec, R., … Hylander, K.
-####(2021). Forest microclimates and climate change: Importance, drivers and future
-####research agenda. Global Change Biology, 27(11), 2279–2297.  https://doi.org/10.1111/gcb.15569 
-####Greiser, C., Meineri, E., Luoto, M., Ehrlén, J.,
-####& Hylander, K. (2018). Monthly microclimate models in a managed boreal
-####forest landscape. Agricultural and Forest Meteorology, 250–251,
-####147–158.  https://doi.org/10.1016/j.agrformet.2017.12.252 
-####Harris, R. M. B., Loeffler, F., Rumm, A., Fischer, C., Horchler, P., Scholz, M., Foeckler, F., & Henle, K. (2020). Biological responses to extreme weather events ####are detectable but difficult to formally attribute to anthropogenic climate change. Scientific Reports, 10(1), 14067. https://doi.org/10.1038/s41598-020-70901-6
+BEC WEB. (n.d.). Retrieved April 1,
+2022, from  https://www.for.gov.bc.ca/hre/becweb/resources/classificationreports/subzones/index.html 
+
+CDFmm.pdf. (n.d.). Retrieved April 1, 2022, from  https://www.for.gov.bc.ca/hre/becweb/Downloads/Downloads_SubzoneReports/CDFmm.pdf 
+
+Cheng, Y. (Daniel), Farmer, J. R., Dickinson, S.
+L., Robeson, S. M., Fischer, B. C., & Reynolds, H. L. (2021). Climate
+change impacts and urban green space adaptation efforts: Evidence from U.S.
+municipal parks and recreation departments. Urban Climate, 39,
+100962.  https://doi.org/10.1016/j.uclim.2021.100962 
+100963.  
+De Frenne, P., Lenoir, J., Luoto, M., Scheffers, B.
+R., Zellweger, F., Aalto, J., Ashcroft, M. B., Christiansen, D. M., Decocq, G.,
+De Pauw, K., Govaert, S., Greiser, C., Gril, E., Hampe, A., Jucker, T., Klinges,
+D. H., Koelemeijer, I. A., Lembrechts, J. J., Marrec, R., … Hylander, K.
+(2021). Forest microclimates and climate change: Importance, drivers and future
+research agenda. Global Change Biology, 27(11), 2279–2297.  https://doi.org/10.1111/gcb.15569 
+
+Greiser, C., Meineri, E., Luoto, M., Ehrlén, J.,
+& Hylander, K. (2018). Monthly microclimate models in a managed boreal
+forest landscape. Agricultural and Forest Meteorology, 250–251,
+147–158.  https://doi.org/10.1016/j.agrformet.2017.12.252 
+
+Harris, R. M. B., Loeffler, F., Rumm, A., Fischer, C., Horchler, P., Scholz, M., Foeckler, F., & Henle, K. (2020). Biological responses to extreme weather events are detectable but difficult to formally attribute to anthropogenic climate change. Scientific Reports, 10(1), 14067. https://doi.org/10.1038/s41598-020-70901-6
 
 Kašpar, V., Hederová, L., Macek, M., Müllerová, J.,
 Prošek, J., Surový, P., Wild, J., & Kopecký, M. (2021). Temperature
 buffering in temperate forests: Comparing microclimate models based on ground
 measurements with active and passive remote sensing. Remote Sensing of
 Environment, 263, 112522.  https://doi.org/10.1016/j.rse.2021.112522 
+
 Land Surface Temperature. (2021, December 31). [Text.Article]. NASA Earth Observatory. https://earthobservatory.nasa.gov/global-maps/MOD_LSTD_M
 
 Philpott, S. M., & Bichier, P. (2012). Effects
 of shade tree removal on birds in coffee agroecosystems in Chiapas, Mexico. Agriculture,
 Ecosystems & Environment, 149, 171–180.  https://doi.org/10.1016/j.agee.2011.02.015 
+
 Roussel, J.-R., Tompalski, P., & Goodbody, T.
 R. H. (n.d.). The lidR package. Retrieved April 1, 2022, from  https://r-lidar.github.io/lidRbook/ 
+
 Valladares, F., Laanisto, L., Niinemets, Ü., & Zavala, M. A. (2016). Shedding light on shade: Ecological perspectives of understorey plant life. Plant Ecology & Diversity, 9(3), 237–251.  https://doi.org/10.1080/17550874.2016.1210262 
+
 Wild, J., Kopecký, M., Macek, M., Šanda, M., Jankovec, J., & Haase, T. (2019). Climate at ecologically relevant scales: A new temperature and soil moisture logger for long-term microclimate measurement. Agricultural and Forest Meteorology, 268, 40–47. https://doi.org/10.1016/j.agrformet.2018.12.018
 
 What Are Microclimates? (2011,
 March 12). FineGardening.  https://www.finegardening.com/article/what-are-microclimates 
+
 Zellweger, F., De Frenne, P., Lenoir, J., Rocchini,
 D., & Coomes, D. (2019). Advances in Microclimate Ecology Arising from
 Remote Sensing. Trends in Ecology & Evolution, 34(4),
